@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 import { StepDataService } from '../../services/step-data.service';
 import { StepperService } from '../../services/stepper.service';
 import { Subscription } from 'rxjs';
@@ -9,7 +10,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-step-summary',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatTableModule],
+  imports: [CommonModule, MatCardModule, MatTableModule, MatIconModule],
   templateUrl: './step-summary.html',
   styleUrls: ['./step-summary.scss']
 })
@@ -58,5 +59,9 @@ export class StepSummaryComponent implements OnInit, OnDestroy {
 
   getKeys(obj: any): string[] {
     return obj ? Object.keys(obj) : [];
+  }
+
+  goToStep(index: number) {
+    this.stepperService.goToStep(index);
   }
 } 

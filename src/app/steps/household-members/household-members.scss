@@ -1,0 +1,12 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+}
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+button[mat-icon-button] {
+  margin-top: 16px;
+}

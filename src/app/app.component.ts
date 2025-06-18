@@ -4,6 +4,7 @@ import { DynamicStepperComponent } from './components/dynamic-stepper/dynamic-st
 import { StepperConfig } from './models/step-config.interface';
 import { PersonalInfoComponent } from './steps/personal-info/personal-info.component';
 import { AddressComponent } from './steps/address/address.component';
+import { HouseholdMembersComponent } from './steps/household-members/household-members';
 
 @Component({
   selector: 'app-root',
@@ -40,6 +41,11 @@ export class AppComponent {
         id: 'address',
         title: 'Adresse',
         component: AddressComponent
+      },
+      {
+        id: 'household-members',
+        title: 'Membres du foyer',
+        component: HouseholdMembersComponent
       }
     ],
     showSummary: true,

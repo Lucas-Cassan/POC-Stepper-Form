@@ -34,6 +34,12 @@ export class DynamicStepperComponent implements OnInit {
 
   ngOnInit(): void {
     this.stepperService.setConfig(this.config);
+    this.stepperService.getCurrentStepIndex().subscribe(index => {
+      if (this.stepper && this.stepper.selectedIndex !== index) {
+        this.stepper.selectedIndex = index;
+        this.cdr.detectChanges();
+      }
+    });
     this.cdr.detectChanges();
   }
 

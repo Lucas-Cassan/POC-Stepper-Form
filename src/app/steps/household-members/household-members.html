@@ -1,0 +1,45 @@
+<form [formGroup]="form">
+  <table style="width: 100%; margin-bottom: 16px;">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Âge</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let member of members.controls; let i = index" [formGroup]="asFormGroup(member)">
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Nom</mat-label>
+            <input matInput formControlName="lastName" required>
+            <mat-error *ngIf="member.get('lastName')?.invalid && member.get('lastName')?.touched">Nom requis</mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Prénom</mat-label>
+            <input matInput formControlName="firstName" required>
+            <mat-error *ngIf="member.get('firstName')?.invalid && member.get('firstName')?.touched">Prénom requis</mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Âge</mat-label>
+            <input matInput type="number" formControlName="age" required min="0">
+            <mat-error *ngIf="member.get('age')?.invalid && member.get('age')?.touched">Âge requis</mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <button mat-icon-button color="warn" type="button" (click)="removeMember(i)" *ngIf="members.length > 1">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button mat-raised-button color="primary" type="button" (click)="addMember()">
+    <mat-icon>add</mat-icon> Ajouter un membre
+  </button>
+</form>

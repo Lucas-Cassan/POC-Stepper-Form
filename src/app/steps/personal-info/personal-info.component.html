@@ -1,25 +1,25 @@
 <form [formGroup]="form">
-  <div class="form-group">
-    <label for="firstName">Prénom</label>
-    <input id="firstName" type="text" formControlName="firstName" class="form-control">
-    <div *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched" class="error-message">
+  <mat-form-field appearance="fill">
+    <mat-label>Prénom</mat-label>
+    <input matInput formControlName="firstName" required>
+    <mat-error *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched">
       Le prénom est requis
-    </div>
-  </div>
+    </mat-error>
+  </mat-form-field>
 
-  <div class="form-group">
-    <label for="lastName">Nom</label>
-    <input id="lastName" type="text" formControlName="lastName" class="form-control">
-    <div *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched" class="error-message">
+  <mat-form-field appearance="fill">
+    <mat-label>Nom</mat-label>
+    <input matInput formControlName="lastName" required>
+    <mat-error *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched">
       Le nom est requis
-    </div>
-  </div>
+    </mat-error>
+  </mat-form-field>
 
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input id="email" type="email" formControlName="email" class="form-control">
-    <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="error-message">
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" required type="email">
+    <mat-error *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
       L'email est requis et doit être valide
-    </div>
-  </div>
+    </mat-error>
+  </mat-form-field>
 </form> 

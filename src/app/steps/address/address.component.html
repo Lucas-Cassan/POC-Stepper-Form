@@ -1,33 +1,33 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="street">Rue</label>
-    <input id="street" type="text" formControlName="street" class="form-control">
-    <div *ngIf="form.get('street')?.invalid && form.get('street')?.touched" class="error-message">
+  <mat-form-field appearance="fill">
+    <mat-label>Rue</mat-label>
+    <input matInput formControlName="street" required>
+    <mat-error *ngIf="form.get('street')?.invalid && form.get('street')?.touched">
       La rue est requise
-    </div>
-  </div>
+    </mat-error>
+  </mat-form-field>
 
-  <div class="form-group">
-    <label for="city">Ville</label>
-    <input id="city" type="text" formControlName="city" class="form-control">
-    <div *ngIf="form.get('city')?.invalid && form.get('city')?.touched" class="error-message">
+  <mat-form-field appearance="fill">
+    <mat-label>Ville</mat-label>
+    <input matInput formControlName="city" required>
+    <mat-error *ngIf="form.get('city')?.invalid && form.get('city')?.touched">
       La ville est requise
-    </div>
-  </div>
+    </mat-error>
+  </mat-form-field>
 
-  <div class="form-group">
-    <label for="zipCode">Code postal</label>
-    <input id="zipCode" type="text" formControlName="zipCode" class="form-control">
-    <div *ngIf="form.get('zipCode')?.invalid && form.get('zipCode')?.touched" class="error-message">
+  <mat-form-field appearance="fill">
+    <mat-label>Code postal</mat-label>
+    <input matInput formControlName="zipCode" required>
+    <mat-error *ngIf="form.get('zipCode')?.invalid && form.get('zipCode')?.touched">
       Le code postal est requis
-    </div>
-  </div>
+    </mat-error>
+  </mat-form-field>
 
-  <div class="form-group">
-    <label for="country">Pays</label>
-    <input id="country" type="text" formControlName="country" class="form-control">
-    <div *ngIf="form.get('country')?.invalid && form.get('country')?.touched" class="error-message">
+  <mat-form-field appearance="fill">
+    <mat-label>Pays</mat-label>
+    <input matInput formControlName="country" required>
+    <mat-error *ngIf="form.get('country')?.invalid && form.get('country')?.touched">
       Le pays est requis
-    </div>
-  </div>
+    </mat-error>
+  </mat-form-field>
 </form> 
