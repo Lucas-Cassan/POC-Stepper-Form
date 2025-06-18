@@ -1,0 +1,36 @@
+<form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Rue</mat-label>
+    <input matInput formControlName="street" required>
+    <mat-error *ngIf="addressForm.get('street')?.hasError('required')">
+      La rue est requise
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Ville</mat-label>
+    <input matInput formControlName="city" required>
+    <mat-error *ngIf="addressForm.get('city')?.hasError('required')">
+      La ville est requise
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Code postal</mat-label>
+    <input matInput formControlName="postalCode" required>
+    <mat-error *ngIf="addressForm.get('postalCode')?.hasError('required')">
+      Le code postal est requis
+    </mat-error>
+    <mat-error *ngIf="addressForm.get('postalCode')?.hasError('pattern')">
+      Le code postal doit contenir 5 chiffres
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Pays</mat-label>
+    <input matInput formControlName="country" required>
+    <mat-error *ngIf="addressForm.get('country')?.hasError('required')">
+      Le pays est requis
+    </mat-error>
+  </mat-form-field>
+</form>
