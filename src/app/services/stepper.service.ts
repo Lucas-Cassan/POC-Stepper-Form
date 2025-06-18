@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { StepperConfig, StepConfig } from '../interfaces/stepper-config.interface';
+import { StepperData } from '../interfaces/stepper-data.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,8 @@ export class StepperService {
   private config = new BehaviorSubject<StepperConfig | null>(null);
   private currentStepIndex = new BehaviorSubject<number>(0);
   private stepData = new BehaviorSubject<Map<string, any>>(new Map());
+  private dataSubject = new BehaviorSubject<StepperData>({});
+  data$ = this.dataSubject.asObservable();
 
   constructor() {}
 
@@ -55,5 +58,17 @@ export class StepperService {
     if (currentIndex > 0) {
       this.currentStepIndex.next(currentIndex - 1);
     }
+  }
+
+  updateData(stepId: string, data: any) {
+    const currentData = this.dataSubject.value;
+    this.dataSubject.next({
+      ...currentData,
+      [stepId]: data
+    });
+  }
+
+  getData(): Observable<StepperData> {
+    return this.data$;
   }
 } 

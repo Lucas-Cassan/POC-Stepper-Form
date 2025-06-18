@@ -1,22 +1,14 @@
 <div class="summary-container">
   <h2>Résumé des informations</h2>
-  
-  <div *ngFor="let key of data | keyvalue">
-    <ng-container *ngIf="!isObject(key.value)">
-      <mat-form-field appearance="fill">
-        <mat-label>{{getLabel(key.key)}}</mat-label>
-        <input matInput [value]="key.value" readonly>
-      </mat-form-field>
-    </ng-container>
-
-    <ng-container *ngIf="isObject(key.value)">
-      <h3>{{getLabel(key.key)}}</h3>
-      <div *ngFor="let subKey of key.value | keyvalue">
-        <mat-form-field appearance="fill">
-          <mat-label>{{getLabel(subKey.key)}}</mat-label>
+  <div class="summary-content">
+    <div *ngFor="let section of data | keyvalue">
+      <h3>{{section.key}}</h3>
+      <div *ngFor="let subKey of section.value | keyvalue">
+        <mat-form-field appearance="outline">
+          <mat-label>{{getLabel(subKey.key.toString())}}</mat-label>
           <input matInput [value]="subKey.value" readonly>
         </mat-form-field>
       </div>
-    </ng-container>
+    </div>
   </div>
 </div>

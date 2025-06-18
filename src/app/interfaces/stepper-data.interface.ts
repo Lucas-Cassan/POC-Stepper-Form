@@ -11,8 +11,10 @@ export interface AddressData {
   country: string;
 }
 
+export interface StepData {
+  [key: string]: string | number;
+}
+
 export interface StepperData {
-  identity?: IdentityData;
-  address?: AddressData;
-  [key: string]: any;
+  [stepId: string]: StepData;
 } 
