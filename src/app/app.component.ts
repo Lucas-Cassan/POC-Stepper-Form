@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DynamicStepperComponent } from './components/dynamic-stepper/dynamic-stepper.component';
+import { DynamicStepperComponent } from './components/dynamic-stepper/dynamic-stepper';
 import { StepperConfig } from './models/step-config.interface';
 import { PersonalInfoComponent } from './steps/personal-info/personal-info.component';
 import { AddressComponent } from './steps/address/address.component';

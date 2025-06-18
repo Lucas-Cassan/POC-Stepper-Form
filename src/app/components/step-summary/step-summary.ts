@@ -10,55 +10,8 @@ import { Subscription } from 'rxjs';
   selector: 'app-step-summary',
   standalone: true,
   imports: [CommonModule, MatCardModule, MatTableModule],
-  template: `
-    <div class="summary-container">
-      <mat-card *ngFor="let step of steps">
-        <mat-card-header>
-          <mat-card-title>{{ step.title }}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <ng-container *ngIf="isTableData(stepData[step.id]); else simpleData">
-            <table mat-table [dataSource]="stepData[step.id]">
-              <ng-container *ngFor="let column of getColumns(stepData[step.id])" [matColumnDef]="column">
-                <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
-                <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
-              </ng-container>
-              <tr mat-header-row *matHeaderRowDef="getColumns(stepData[step.id])"></tr>
-              <tr mat-row *matRowDef="let row; columns: getColumns(stepData[step.id])"></tr>
-            </table>
-          </ng-container>
-          <ng-template #simpleData>
-            <div class="simple-data">
-              <div *ngFor="let key of getKeys(stepData[step.id])" class="data-row">
-                <span class="label">{{ key }}:</span>
-                <span class="value">{{ stepData[step.id][key] }}</span>
-              </div>
-            </div>
-          </ng-template>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  `,
-  styles: [`
-    .summary-container {
-      padding: 20px;
-    }
-    .simple-data {
-      padding: 10px;
-    }
-    .data-row {
-      display: flex;
-      margin: 5px 0;
-    }
-    .label {
-      font-weight: bold;
-      margin-right: 10px;
-      min-width: 150px;
-    }
-    .value {
-      color: #666;
-    }
-  `]
+  templateUrl: './step-summary.html',
+  styleUrls: ['./step-summary.scss']
 })
 export class StepSummaryComponent implements OnInit, OnDestroy {
   steps: any[] = [];

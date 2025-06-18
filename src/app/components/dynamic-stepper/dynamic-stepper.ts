@@ -5,8 +5,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { StepperConfig } from '../../models/step-config.interface';
 import { StepperService } from '../../services/stepper.service';
 import { StepDataService } from '../../services/step-data.service';
-import { StepContainerComponent } from '../../components/step-container/step-container.component';
-import { StepSummaryComponent } from '../../components/step-summary/step-summary.component';
+import { StepContainerComponent } from '../step-container/step-container';
+import { StepSummaryComponent } from '../step-summary/step-summary';
 
 @Component({
   selector: 'app-dynamic-stepper',
@@ -18,8 +18,8 @@ import { StepSummaryComponent } from '../../components/step-summary/step-summary
     StepContainerComponent,
     StepSummaryComponent
   ],
-  templateUrl: './dynamic-stepper.component.html',
-  styleUrls: ['./dynamic-stepper.component.scss']
+  templateUrl: './dynamic-stepper.html',
+  styleUrls: ['./dynamic-stepper.scss']
 })
 export class DynamicStepperComponent implements OnInit {
   @Input() config!: StepperConfig;

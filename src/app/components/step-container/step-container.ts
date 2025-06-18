@@ -6,16 +6,8 @@ import { StepConfig } from '../../models/step-config.interface';
   selector: 'app-step-container',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <div class="step-container">
-      <ng-container #componentContainer></ng-container>
-    </div>
-  `,
-  styles: [`
-    .step-container {
-      padding: 20px;
-    }
-  `]
+  templateUrl: './step-container.html',
+  styleUrls: ['./step-container.scss']
 })
 export class StepContainerComponent implements OnDestroy, OnChanges {
   @Input() stepConfig!: StepConfig;
