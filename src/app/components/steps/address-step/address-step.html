@@ -1,5 +1,5 @@
 <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="outline">
     <mat-label>Rue</mat-label>
     <input matInput formControlName="street" required>
     <mat-error *ngIf="addressForm.get('street')?.hasError('required')">
@@ -7,7 +7,7 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="outline">
     <mat-label>Ville</mat-label>
     <input matInput formControlName="city" required>
     <mat-error *ngIf="addressForm.get('city')?.hasError('required')">
@@ -15,7 +15,7 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="outline">
     <mat-label>Code postal</mat-label>
     <input matInput formControlName="postalCode" required>
     <mat-error *ngIf="addressForm.get('postalCode')?.hasError('required')">
@@ -26,7 +26,7 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="outline">
     <mat-label>Pays</mat-label>
     <input matInput formControlName="country" required>
     <mat-error *ngIf="addressForm.get('country')?.hasError('required')">

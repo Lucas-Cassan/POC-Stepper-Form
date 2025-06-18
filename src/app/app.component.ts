@@ -31,13 +31,11 @@ export class AppComponent {
       {
         id: 'identity',
         title: 'Identité',
-        component: 'identity',
         required: true
       },
       {
         id: 'address',
         title: 'Adresse',
-        component: 'address',
         required: true
       }
     ],

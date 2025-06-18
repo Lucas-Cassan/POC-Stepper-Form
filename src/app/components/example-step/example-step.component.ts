@@ -42,13 +42,14 @@ export class ExampleStepComponent implements OnInit {
 
   ngOnInit() {
     // Récupérer les données existantes si elles existent
-    const existingData = this.stepperService.getStepData('example-step');
-    if (existingData) {
-      this.data = { ...existingData };
-    }
+    this.stepperService.getData().subscribe(data => {
+      if (data['example-step']) {
+        this.data = { ...data['example-step'] };
+      }
+    });
   }
 
   updateData() {
-    this.stepperService.setStepData('example-step', this.data);
+    this.stepperService.updateData('example-step', this.data);
   }
 } 

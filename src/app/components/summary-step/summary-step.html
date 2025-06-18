@@ -3,7 +3,7 @@
   
   <div *ngFor="let key of data | keyvalue">
     <ng-container *ngIf="!isObject(key.value)">
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="outline">
         <mat-label>{{getLabel(key.key)}}</mat-label>
         <input matInput [value]="key.value" readonly>
       </mat-form-field>
@@ -12,7 +12,7 @@
     <ng-container *ngIf="isObject(key.value)">
       <h3>{{getLabel(key.key)}}</h3>
       <div *ngFor="let subKey of key.value | keyvalue">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
           <mat-label>{{getLabel(subKey.key)}}</mat-label>
           <input matInput [value]="subKey.value" readonly>
         </mat-form-field>

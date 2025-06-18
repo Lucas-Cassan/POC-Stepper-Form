@@ -5,8 +5,11 @@
       <button mat-button (click)="stepper.previous()" *ngIf="stepper.selectedIndex > 0">
         Précédent
       </button>
-      <button mat-raised-button color="primary" (click)="onNextClick()" *ngIf="!config.showSummary || i < config.steps.length - 1">
+      <button mat-raised-button color="primary" (click)="onNextClick()" *ngIf="i < config.steps.length - 1">
         Suivant
+      </button>
+      <button mat-raised-button color="primary" (click)="onNextClick()" *ngIf="i === config.steps.length - 1 && config.showSummary">
+        Voir le résumé
       </button>
     </div>
   </mat-step>

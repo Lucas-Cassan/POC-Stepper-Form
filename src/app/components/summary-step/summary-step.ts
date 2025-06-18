@@ -4,7 +4,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { StepperService } from '../../services/stepper';
-import { StepperData } from '../../interfaces/stepper-data.interface';
 
 @Component({
   selector: 'app-summary-step',
@@ -19,12 +18,12 @@ import { StepperData } from '../../interfaces/stepper-data.interface';
   styleUrls: ['./summary-step.scss']
 })
 export class SummaryStepComponent implements OnInit {
-  data: StepperData = {};
+  data: Record<string, any> = {};
 
   constructor(private stepperService: StepperService) {}
 
   ngOnInit(): void {
-    this.stepperService.data$.subscribe(data => {
+    this.stepperService.getData().subscribe(data => {
       console.log('Summary data:', data);
       this.data = data;
     });
@@ -35,15 +34,20 @@ export class SummaryStepComponent implements OnInit {
   }
 
   getLabel(key: string): string {
-    const labels: { [key: string]: string } = {
-      firstname: 'Prénom',
-      lastname: 'Nom',
-      age: 'Âge',
+    const labels: Record<string, string> = {
+      firstName: 'Prénom',
+      lastName: 'Nom',
+      email: 'Email',
+      phone: 'Téléphone',
       street: 'Rue',
       city: 'Ville',
       postalCode: 'Code postal',
       country: 'Pays'
     };
     return labels[key] || key;
+  }
+
+  getKeyString(key: unknown): string {
+    return String(key);
   }
 }

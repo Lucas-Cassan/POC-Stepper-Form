@@ -1,7 +1,7 @@
 export interface StepConfig {
   id: string;
   title: string;
-  component: string;
+  component?: string;
   required?: boolean;
 }
 

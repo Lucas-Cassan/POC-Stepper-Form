@@ -1,8 +1,8 @@
-import { Component, Input, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatStepperModule, MatStepper } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
-import { StepperConfig, StepConfig } from '../../interfaces/stepper-config.interface';
+import { StepperConfig } from '../../interfaces/stepper-config.interface';
 import { StepperService } from '../../services/stepper';
 import { IdentityStepComponent } from '../steps/identity-step/identity-step';
 import { AddressStepComponent } from '../steps/address-step/address-step';
@@ -22,19 +22,13 @@ import { SummaryStepComponent } from '../summary-step/summary-step';
   templateUrl: './stepper.html',
   styleUrls: ['./stepper.scss']
 })
-export class StepperComponent implements OnInit {
+export class StepperComponent {
   @Input() config!: StepperConfig;
   @Output() finished = new EventEmitter<any>();
   @ViewChild('stepper') stepper!: MatStepper;
   currentStepComponent: any;
 
   constructor(private stepperService: StepperService) {}
-
-  ngOnInit(): void {
-    if (!this.config) {
-      throw new Error('Stepper configuration is required');
-    }
-  }
 
   onStepDataSubmitted(stepId: string, data: any): void {
     this.stepperService.updateData(stepId, data);
@@ -49,7 +43,14 @@ export class StepperComponent implements OnInit {
   }
 
   getComponentForStep(stepId: string): any {
-    return this.config.steps.find(step => step.id === stepId)?.component;
+    switch (stepId) {
+      case 'identity':
+        return IdentityStepComponent;
+      case 'address':
+        return AddressStepComponent;
+      default:
+        return null;
+    }
   }
 
   onNextClick(): void {

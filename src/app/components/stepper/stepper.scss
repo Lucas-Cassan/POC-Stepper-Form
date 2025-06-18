@@ -1,0 +1,12 @@
+.stepper-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding: 0 1rem;
+}
+
+::ng-deep {
+  .mat-step-header {
+    pointer-events: auto !important;
+  }
+}
