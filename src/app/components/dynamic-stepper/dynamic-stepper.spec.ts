@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IdentityStep } from './identity-step';
+import { DynamicStepper } from './dynamic-stepper';
 
-describe('IdentityStep', () => {
-  let component: IdentityStep;
-  let fixture: ComponentFixture<IdentityStep>;
+describe('DynamicStepper', () => {
+  let component: DynamicStepper;
+  let fixture: ComponentFixture<DynamicStepper>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IdentityStep]
+      imports: [DynamicStepper]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(IdentityStep);
+    fixture = TestBed.createComponent(DynamicStepper);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

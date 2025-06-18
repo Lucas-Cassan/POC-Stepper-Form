@@ -1,74 +1,82 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { StepperConfig, StepConfig } from '../interfaces/stepper-config.interface';
-import { StepperData } from '../interfaces/stepper-data.interface';
+import { StepConfig, StepperConfig } from '../models/step-config.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StepperService {
-  private config = new BehaviorSubject<StepperConfig | null>(null);
   private currentStepIndex = new BehaviorSubject<number>(0);
-  private stepData = new BehaviorSubject<Map<string, any>>(new Map());
-  private dataSubject = new BehaviorSubject<StepperData>({});
-  data$ = this.dataSubject.asObservable();
+  private config = new BehaviorSubject<StepperConfig | null>(null);
 
-  constructor() {}
+  constructor() { }
 
   setConfig(config: StepperConfig): void {
     this.config.next(config);
+    this.currentStepIndex.next(0);
   }
 
   getConfig(): Observable<StepperConfig | null> {
     return this.config.asObservable();
   }
 
-  setCurrentStepIndex(index: number): void {
-    this.currentStepIndex.next(index);
-  }
-
   getCurrentStepIndex(): Observable<number> {
     return this.currentStepIndex.asObservable();
   }
 
-  setStepData(stepId: string, data: any): void {
-    const currentData = this.stepData.value;
-    currentData.set(stepId, data);
-    this.stepData.next(currentData);
-  }
-
-  getStepData(stepId: string): any {
-    return this.stepData.value.get(stepId);
-  }
-
-  getAllStepData(): Observable<Map<string, any>> {
-    return this.stepData.asObservable();
-  }
-
-  nextStep(): void {
+  nextStep(): boolean {
     const currentIndex = this.currentStepIndex.value;
     const config = this.config.value;
-    if (config && currentIndex < config.steps.length - 1) {
-      this.currentStepIndex.next(currentIndex + 1);
+    
+    if (!config || currentIndex >= config.steps.length - 1) {
+      return false;
     }
+
+    this.currentStepIndex.next(currentIndex + 1);
+    return true;
   }
 
-  previousStep(): void {
+  previousStep(): boolean {
     const currentIndex = this.currentStepIndex.value;
-    if (currentIndex > 0) {
-      this.currentStepIndex.next(currentIndex - 1);
+    
+    if (currentIndex <= 0) {
+      return false;
     }
+
+    this.currentStepIndex.next(currentIndex - 1);
+    return true;
   }
 
-  updateData(stepId: string, data: any) {
-    const currentData = this.dataSubject.value;
-    this.dataSubject.next({
-      ...currentData,
-      [stepId]: data
-    });
+  goToStep(index: number): boolean {
+    const config = this.config.value;
+    
+    if (!config || index < 0 || index >= config.steps.length) {
+      return false;
+    }
+
+    this.currentStepIndex.next(index);
+    return true;
   }
 
-  getData(): Observable<StepperData> {
-    return this.data$;
+  getCurrentStep(): StepConfig | null {
+    const config = this.config.value;
+    const currentIndex = this.currentStepIndex.value;
+    
+    if (!config || currentIndex >= config.steps.length) {
+      return null;
+    }
+
+    return config.steps[currentIndex];
+  }
+
+  isLastStep(): boolean {
+    const config = this.config.value;
+    const currentIndex = this.currentStepIndex.value;
+    
+    return config ? currentIndex === config.steps.length - 1 : false;
+  }
+
+  isFirstStep(): boolean {
+    return this.currentStepIndex.value === 0;
   }
 } 

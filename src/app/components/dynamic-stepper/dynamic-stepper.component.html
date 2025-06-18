@@ -1,0 +1,38 @@
+<mat-stepper [linear]="true" #stepper>
+  <ng-container *ngFor="let step of config.steps; let i = index">
+    <mat-step>
+      <ng-template matStepLabel>{{ step.title }}</ng-template>
+      <app-step-container
+        #stepContainer
+        [stepConfig]="step"
+        (stepComplete)="onStepComplete(step.id, $event)"
+        (stepSubmitted)="onStepSubmitted()">
+      </app-step-container>
+    </mat-step>
+  </ng-container>
+
+  <mat-step *ngIf="config.showSummary">
+    <ng-template matStepLabel>{{ config.summaryTitle || 'Résumé' }}</ng-template>
+    <app-step-summary></app-step-summary>
+  </mat-step>
+</mat-stepper>
+
+<div class="stepper-buttons">
+  <button mat-button
+          *ngIf="stepper.selectedIndex > 0"
+          (click)="stepper.previous()">
+    Retour
+  </button>
+  <button mat-raised-button
+          color="primary"
+          *ngIf="stepper.selectedIndex < stepper.steps.length - 1"
+          (click)="onNext()">
+    Suivant
+  </button>
+  <button mat-raised-button
+          color="primary"
+          *ngIf="stepper.selectedIndex === stepper.steps.length - 1"
+          (click)="onFinish()">
+    Terminer
+  </button>
+</div> 

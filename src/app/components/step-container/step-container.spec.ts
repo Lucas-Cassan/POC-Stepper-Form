@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SummaryStep } from './summary-step';
+import { StepContainer } from './step-container';
 
-describe('SummaryStep', () => {
-  let component: SummaryStep;
-  let fixture: ComponentFixture<SummaryStep>;
+describe('StepContainer', () => {
+  let component: StepContainer;
+  let fixture: ComponentFixture<StepContainer>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SummaryStep]
+      imports: [StepContainer]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SummaryStep);
+    fixture = TestBed.createComponent(StepContainer);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
