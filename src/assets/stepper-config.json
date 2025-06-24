@@ -1,0 +1,32 @@
+{
+  "steps": [
+    {
+      "id": "personal-info",
+      "title": "Informations Personnelles",
+      "type": "local",
+      "component": "PersonalInfoComponent"
+    },
+    {
+      "id": "address",
+      "title": "Adresse",
+      "type": "local",
+      "component": "AddressComponent"
+    },
+    {
+      "id": "household-members",
+      "title": "Membres du foyer",
+      "type": "local",
+      "component": "HouseholdMembersComponent"
+    },
+    {
+      "id": "mfe",
+      "title": "Animal préféré (MFE)",
+      "type": "mfe",
+      "remoteEntry": "http://localhost:4201/remoteEntry.js",
+      "remoteName": "mfe-step",
+      "exposedModule": "./MfeStepComponent"
+    }
+  ],
+  "showSummary": true,
+  "summaryTitle": "Récapitulatif"
+} 

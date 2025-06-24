@@ -3,8 +3,9 @@
     <mat-card-header>
       <mat-card-title>{{ step.title }}</mat-card-title>
       <span class="spacer"></span>
-      <button mat-icon-button color="primary" (click)="goToStep(i)" aria-label="Modifier">
+      <button mat-stroked-button color="primary" class="modify-btn" (click)="goToStep(i)" aria-label="Modifier">
         <mat-icon>edit</mat-icon>
+        Modifier
       </button>
     </mat-card-header>
     <mat-card-content>

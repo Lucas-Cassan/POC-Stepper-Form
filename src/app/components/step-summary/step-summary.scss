@@ -24,3 +24,14 @@ mat-card-header {
 .spacer {
   flex: 1 1 auto;
 }
+
+.modify-btn {
+  margin-left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  box-shadow: none;
+}
