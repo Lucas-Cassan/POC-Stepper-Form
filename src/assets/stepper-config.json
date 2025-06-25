@@ -4,19 +4,75 @@
       "id": "personal-info",
       "title": "Informations Personnelles",
       "type": "local",
-      "component": "PersonalInfoComponent"
+      "component": "PersonalInfoComponent",
+      "stepPayload": {
+        "type": "object",
+        "properties": {
+          "firstName": { "type": "string", "minLength": 1 },
+          "lastName": { "type": "string", "minLength": 1 },
+          "email": { "type": "string", "format": "email", "minLength": 1 }
+        },
+        "required": [
+          "firstName",
+          "lastName",
+          "email"
+        ]
+      }
     },
     {
       "id": "address",
       "title": "Adresse",
       "type": "local",
-      "component": "AddressComponent"
+      "component": "AddressComponent",
+      "stepPayload": {
+        "type": "object",
+        "properties": {
+          "street": { "type": "string", "minLength": 1 },
+          "city": { "type": "string", "minLength": 1 },
+          "zipCode": { "type": "string", "minLength": 1 },
+          "country": { "type": "string", "minLength": 1 }
+        },
+        "required": [
+          "street",
+          "city",
+          "zipCode",
+          "country"
+        ]
+      }
     },
     {
       "id": "household-members",
       "title": "Membres du foyer",
       "type": "local",
-      "component": "HouseholdMembersComponent"
+      "component": "HouseholdMembersComponent",
+      "stepPayload": {
+        "type": "object",
+        "properties": {
+          "members": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "lastName": { "type": "string", "minLength": 1 },
+                "firstName": { "type": "string", "minLength": 1 },
+                "age": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "lastName",
+                "firstName",
+                "age"
+              ]
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "members"
+        ]
+      }
     },
     {
       "id": "mfe",
@@ -24,9 +80,34 @@
       "type": "mfe",
       "remoteEntry": "http://localhost:4201/remoteEntry.js",
       "remoteName": "mfe-step",
-      "exposedModule": "./MfeStepComponent"
+      "exposedModule": "./MfeStepComponent",
+      "stepPayload": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "category": { "type": "string", "minLength": 1 }
+        },
+        "required": [
+          "name",
+          "category"
+        ]
+      }
     }
   ],
   "showSummary": true,
-  "summaryTitle": "Récapitulatif"
-} 
+  "summaryTitle": "Récapitulatif",
+  "payloadSchema": {
+    "firstName": "personal-info.firstName",
+    "lastName": "personal-info.lastName",
+    "email": "personal-info.email",
+    "address": {
+      "street": "address.street",
+      "city": "address.city",
+      "zipCode": "address.zipCode",
+      "country": "address.country"
+    },
+    "members": "household-members.members",
+    "name": "mfe.name",
+    "category": "mfe.category"
+  }
+}

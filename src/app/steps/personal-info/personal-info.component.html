@@ -1,7 +1,7 @@
 <form [formGroup]="form">
   <mat-form-field appearance="fill">
     <mat-label>Prénom</mat-label>
-    <input matInput formControlName="firstName" required>
+    <input matInput formControlName="firstName" required (blur)="form.get('firstName')?.markAsTouched()">
     <mat-error *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched">
       Le prénom est requis
     </mat-error>
@@ -9,7 +9,7 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Nom</mat-label>
-    <input matInput formControlName="lastName" required>
+    <input matInput formControlName="lastName" required (blur)="form.get('lastName')?.markAsTouched()">
     <mat-error *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched">
       Le nom est requis
     </mat-error>
@@ -17,7 +17,7 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Email</mat-label>
-    <input matInput formControlName="email" required type="email">
+    <input matInput formControlName="email" required type="email" (blur)="form.get('email')?.markAsTouched()">
     <mat-error *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
       L'email est requis et doit être valide
     </mat-error>

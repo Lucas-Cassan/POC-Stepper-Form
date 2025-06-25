@@ -1,7 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="fill">
     <mat-label>Rue</mat-label>
-    <input matInput formControlName="street" required>
+    <input matInput formControlName="street" required (blur)="form.get('street')?.markAsTouched()">
     <mat-error *ngIf="form.get('street')?.invalid && form.get('street')?.touched">
       La rue est requise
     </mat-error>
@@ -9,7 +9,7 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Ville</mat-label>
-    <input matInput formControlName="city" required>
+    <input matInput formControlName="city" required (blur)="form.get('city')?.markAsTouched()">
     <mat-error *ngIf="form.get('city')?.invalid && form.get('city')?.touched">
       La ville est requise
     </mat-error>
@@ -17,7 +17,7 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Code postal</mat-label>
-    <input matInput formControlName="zipCode" required>
+    <input matInput formControlName="zipCode" required (blur)="form.get('zipCode')?.markAsTouched()">
     <mat-error *ngIf="form.get('zipCode')?.invalid && form.get('zipCode')?.touched">
       Le code postal est requis
     </mat-error>
@@ -25,7 +25,7 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Pays</mat-label>
-    <input matInput formControlName="country" required>
+    <input matInput formControlName="country" required (blur)="form.get('country')?.markAsTouched()">
     <mat-error *ngIf="form.get('country')?.invalid && form.get('country')?.touched">
       Le pays est requis
     </mat-error>

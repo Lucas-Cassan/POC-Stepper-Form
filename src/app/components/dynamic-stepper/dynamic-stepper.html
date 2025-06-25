@@ -1,4 +1,10 @@
-<mat-stepper [linear]="true" #stepper>
+<div *ngIf="stepValidationErrors?.length" class="validation-errors">
+  <div *ngFor="let err of stepValidationErrors">
+    {{ err.instancePath || err.schemaPath }}: {{ err.message }}
+  </div>
+</div>
+
+<mat-stepper [linear]="true" #stepper *ngIf="config">
   <ng-container *ngFor="let step of config.steps; let i = index">
     <mat-step>
       <ng-template matStepLabel>{{ step.title }}</ng-template>
@@ -17,7 +23,7 @@
   </mat-step>
 </mat-stepper>
 
-<div class="stepper-buttons">
+<div class="stepper-buttons" *ngIf="stepper">
   <button mat-button
           *ngIf="stepper.selectedIndex > 0"
           (click)="stepper.previous()">
@@ -26,7 +32,8 @@
   <button mat-raised-button
           color="primary"
           *ngIf="stepper.selectedIndex < stepper.steps.length - 1"
-          (click)="onNext()">
+          (click)="onNext()"
+          [disabled]="!isCurrentStepValid()">
     Suivant
   </button>
   <button mat-raised-button

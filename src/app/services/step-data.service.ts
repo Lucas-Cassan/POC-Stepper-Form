@@ -27,6 +27,7 @@ export class StepDataService {
   }
 
   getCurrentData(): StepData {
+    
     return this.stepData.value;
   }
 

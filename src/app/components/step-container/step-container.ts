@@ -26,11 +26,12 @@ export class StepContainerComponent implements OnDestroy, OnChanges, AfterViewIn
   @Input() stepConfig!: StepConfig;
   @Output() stepComplete = new EventEmitter<any>();
   @Output() stepSubmitted = new EventEmitter<void>();
+  @Output() stepBlur = new EventEmitter<any>();
   @ViewChild('placeHolder', { read: ViewContainerRef })
   viewContainer!: ViewContainerRef;
 
   private isViewInitialized = false;
-  private componentRef: ComponentRef<any> | null = null;
+  public componentRef: ComponentRef<any> | null = null;
 
   ngAfterViewInit() {
     this.isViewInitialized = true;
@@ -81,7 +82,7 @@ export class StepContainerComponent implements OnDestroy, OnChanges, AfterViewIn
       const component = this.stepConfig.component;
       if (!component) {
         console.error(
-          'Aucun composant fourni pour l’étape',
+          'Aucun composant fourni pour l\'étape',
           this.stepConfig.id
         );
         return;
@@ -108,5 +109,16 @@ export class StepContainerComponent implements OnDestroy, OnChanges, AfterViewIn
     if (this.componentRef) {
       this.componentRef.destroy();
     }
+  }
+
+  private emitBlur() {
+    const currentComponent = this.componentRef?.instance;
+    if (currentComponent?.form) {
+      this.stepBlur.emit(currentComponent.form.value);
+    }
+  }
+
+  onFieldBlur() {
+    this.emitBlur();
   }
 }

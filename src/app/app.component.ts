@@ -1,16 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { DynamicStepperComponent } from './components/dynamic-stepper/dynamic-stepper';
-import { PersonalInfoComponent } from './steps/personal-info/personal-info.component';
-import { AddressComponent } from './steps/address/address.component';
-import { HouseholdMembersComponent } from './steps/household-members/household-members';
-
-const componentMap: any = {
-  PersonalInfoComponent,
-  AddressComponent,
-  HouseholdMembersComponent
-};
 
 @Component({
   selector: 'app-root',
@@ -19,7 +9,7 @@ const componentMap: any = {
   template: `
     <div class="container">
       <h1>Stepper Dynamique</h1>
-      <app-dynamic-stepper *ngIf="stepperConfig" [config]="stepperConfig"></app-dynamic-stepper>
+      <app-dynamic-stepper></app-dynamic-stepper>
     </div>
   `,
   styles: [`
@@ -35,20 +25,9 @@ const componentMap: any = {
     }
   `]
 })
-export class AppComponent implements OnInit {
-  stepperConfig: any;
 
-  constructor(private http: HttpClient) {}
+export class AppComponent {
 
-  ngOnInit() {
-    this.http.get('/assets/stepper-config.json').subscribe((config: any) => {
-      config.steps = config.steps.map((step: any) => {
-        if (step.type === 'local') {
-          return { ...step, component: componentMap[step.component] };
-        }
-        return step;
-      });
-      this.stepperConfig = config;
-    });
-  }
-} 
+  constructor() {}
+
+}
