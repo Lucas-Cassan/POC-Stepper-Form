@@ -67,6 +67,22 @@ export class DynamicStepperComponent implements OnInit {
 
   onFinish(): void {
     const data = this.stepDataService.getCurrentData();
-    console.log('Stepper completed with data:', data);
+    // Flatten the step data: merge all fields from each step into a single object
+    const requestBody = Object.values(data).reduce((acc, stepData) => {
+      if (typeof stepData === 'object' && !Array.isArray(stepData)) {
+        return { ...acc, ...stepData };
+      } else if (Array.isArray(stepData)) {
+        // If the step data is an array (e.g., household members), merge as array under its own key
+        // Find the key in the original data object
+        const stepKey = Object.keys(data).find(key => data[key] === stepData);
+        if (stepKey) {
+          acc[stepKey] = stepData;
+        }
+        return acc;
+      } else {
+        return acc;
+      }
+    }, {} as any);
+    console.log('Stepper completed with request body:', requestBody);
   }
 } 

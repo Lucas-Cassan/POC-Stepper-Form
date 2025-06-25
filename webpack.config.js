@@ -2,8 +2,10 @@ const { shareAll, withModuleFederationPlugin } = require('@angular-architects/mo
 
 module.exports = withModuleFederationPlugin({
 
+  name: 'stepper-app',
+
   remotes: {
-    "mfe-step": "http://localhost:4201/remoteEntry.js",
+    'mfe-step': 'mfe-step@http://localhost:4201/remoteEntry.js',
   },
 
   shared: {

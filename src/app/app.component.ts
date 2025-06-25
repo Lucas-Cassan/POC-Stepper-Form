@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { DynamicStepperComponent } from './components/dynamic-stepper/dynamic-stepper';
 import { PersonalInfoComponent } from './steps/personal-info/personal-info.component';
 import { AddressComponent } from './steps/address/address.component';
@@ -15,7 +15,7 @@ const componentMap: any = {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, DynamicStepperComponent],
+  imports: [CommonModule, DynamicStepperComponent],
   template: `
     <div class="container">
       <h1>Stepper Dynamique</h1>
@@ -24,7 +24,7 @@ const componentMap: any = {
   `,
   styles: [`
     .container {
-      max-width: 800px;
+      width: 75%;
       margin: 0 auto;
       padding: 20px;
     }
