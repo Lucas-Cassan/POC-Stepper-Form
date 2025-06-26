@@ -50,7 +50,7 @@ export class HouseholdMembersComponent {
 
   onSubmit() {
     if (this.form.valid && this.members.length > 0) {
-      this.stepComplete.emit(this.form.value.members);
+      this.stepComplete.emit({ members: this.form.value.members });
     } else {
       this.members.controls.forEach(control => control.markAllAsTouched());
     }

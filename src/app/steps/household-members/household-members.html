@@ -13,21 +13,21 @@
         <td>
           <mat-form-field appearance="fill">
             <mat-label>Nom</mat-label>
-            <input matInput formControlName="lastName" required>
+            <input matInput formControlName="lastName" required (blur)="member.get('lastName')?.markAsTouched()">
             <mat-error *ngIf="member.get('lastName')?.invalid && member.get('lastName')?.touched">Nom requis</mat-error>
           </mat-form-field>
         </td>
         <td>
           <mat-form-field appearance="fill">
             <mat-label>Prénom</mat-label>
-            <input matInput formControlName="firstName" required>
+            <input matInput formControlName="firstName" required (blur)="member.get('firstName')?.markAsTouched()">
             <mat-error *ngIf="member.get('firstName')?.invalid && member.get('firstName')?.touched">Prénom requis</mat-error>
           </mat-form-field>
         </td>
         <td>
           <mat-form-field appearance="fill">
             <mat-label>Âge</mat-label>
-            <input matInput type="number" formControlName="age" required min="0">
+            <input matInput type="number" formControlName="age" required min="0" (blur)="member.get('age')?.markAsTouched()">
             <mat-error *ngIf="member.get('age')?.invalid && member.get('age')?.touched">Âge requis</mat-error>
           </mat-form-field>
         </td>

@@ -49,7 +49,21 @@ export class StepSummaryComponent implements OnInit, OnDestroy {
   }
 
   isTableData(data: any): boolean {
+    // Handle the new structure where household-members is { members: [...] }
+    if (data && typeof data === 'object' && data.members && Array.isArray(data.members)) {
+      return true;
+    }
+    // Handle direct arrays (legacy or other cases)
     return Array.isArray(data);
+  }
+
+  getTableData(data: any): any[] {
+    // Handle the new structure where household-members is { members: [...] }
+    if (data && typeof data === 'object' && data.members && Array.isArray(data.members)) {
+      return data.members;
+    }
+    // Handle direct arrays (legacy or other cases)
+    return Array.isArray(data) ? data : [];
   }
 
   getColumns(data: any[]): string[] {
