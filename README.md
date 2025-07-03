@@ -32,6 +32,8 @@ To build the project run:
 
 ```bash
 ng build
+# Or
+npm run build
 ```
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
@@ -57,3 +59,16 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Generate Secret and Public Key
+```bash
+# Génère la clé privée (private.pem)
+openssl genpkey -algorithm RSA -out private.pem -pkeyopt rsa_keygen_bits:2048
+ 
+# Génère la clé publique (public.pem) à partir de la clé privée
+openssl rsa -pubout -in private.pem -out public.pem
+````
+## Run 
+```bash
+npx http-server dist/stepper-mfe -p 4200 --cors   
+```
